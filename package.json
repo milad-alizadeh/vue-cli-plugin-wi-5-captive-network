@@ -5,12 +5,12 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/milad-alizadeh/vue-cli-plugin-wi-5-captive-network.git"
+    "url": "git+https://github.com/milad-alizadeh/vue-cli-plugin-wi5-captive-network.git"
   },
   "author": "Milad Alizadeh <contact@miladalizadeh.com> (miladalizadeh.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/milad-alizadeh/vue-cli-plugin-wi-5-captive-network/issues"
+    "url": "https://github.com/milad-alizadeh/vue-cli-plugin-wi5-captive-network/issues"
   },
-  "homepage": "https://github.com/milad-alizadeh/vue-cli-plugin-wi-5-captive-network#readme"
+  "homepage": "https://github.com/milad-alizadeh/vue-cli-plugin-wi5-captive-network#readme"
 }
