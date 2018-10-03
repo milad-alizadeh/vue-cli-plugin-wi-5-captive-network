@@ -1,6 +1,6 @@
 {
   "name": "vue-cli-plugin-wi5-captive-network",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A Vue CLI plugin for creating apps with welcome screens in captive network",
   "main": "index.js",
   "repository": {
