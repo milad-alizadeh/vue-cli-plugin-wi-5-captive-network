@@ -31,7 +31,8 @@ import { isCna } from '@/helpers'
   } catch (e) {
     import('./cna/main')
   }
-})()`
+})()
+`
     }
   })
 }
