@@ -9,7 +9,7 @@
 <script>
 import platform from 'platform'
 import bootstrapper from '../../bootstrapper'
-import { isCna } from '@/helpers'
+import isCna from '@/helpers/is-cna'
 
 import VLoader from 'atoms/VLoader'
 import VButton from 'atoms/VButton'

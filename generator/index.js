@@ -18,7 +18,7 @@ module.exports = (api, options, rootOptions) => {
   api.postProcessFiles(files => {
     if (files['src/main.js']) {
       files['src/main.js'] = `import bootstrapper from './bootstrapper'
-import { isCna } from '@/helpers'
+import isCna from '@/helpers/is-cna'
 
 (async () => {
   try {
