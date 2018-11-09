@@ -13,13 +13,11 @@ import isCna from '@/helpers/is-cna'
 
 import VLoader from 'atoms/VLoader'
 import VButton from 'atoms/VButton'
-import VHeading from 'atoms/VHeading'
 import VText from 'atoms/VText'
 
 export default {
   components: {
     VLoader,
-    VHeading,
     VButton,
     VText
   },
