@@ -21,7 +21,7 @@ const waitForInternet = (timeout = 15000) => {
         clearInterval(interval)
         resolve(true)
       } catch (e) {
-        console.log(e)
+        throw new Error(e)
       }
     }, 1000)
   })

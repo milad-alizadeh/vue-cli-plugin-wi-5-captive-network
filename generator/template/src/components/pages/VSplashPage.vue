@@ -1,29 +1,27 @@
 <template>
-  <div class="p-splash">
-    <VButton id="link-1" href="/?ids=fsdf" @click="handleClick" target="_self">Open Web App</VButton>
-    <VText>Internet Access: {{ hasInternet }}</VText>
-    <VLoader v-if="loading"/>
+  <div class="v-p-splash">
+    <VSplashTemplate
+      :isLoading="isLoading"
+      @externalLinkClicked="handleClick"
+    />
   </div>
 </template>
 
 <script>
+import VSplashTemplate from 'templates/VSplashTemplate'
+
 import platform from 'platform'
 import bootstrapper from '../../bootstrapper'
 import isCna from '@/helpers/is-cna'
 
-import VLoader from 'atoms/VLoader'
-import VButton from 'atoms/VButton'
-import VText from 'atoms/VText'
-
 export default {
+  name: 'VSplashPage',
   components: {
-    VLoader,
-    VButton,
-    VText
+    VSplashTemplate
   },
   data () {
     return {
-      loading: false,
+      isLoading: false,
       hasInternet: this.$route.query.hasinternet,
       clickeditemid: this.$route.query.clickeditemid,
       hasBeenTriggered: false,
@@ -36,7 +34,7 @@ export default {
     // Redirect to fallback page if a click has been triggered
     // and the new page is opened in captive portal
     if (this.hasBeenTriggered && isCna()) {
-      this.gotToPage('/fallback')
+      this.gotToPage('/cna/fallback')
     } else {
       this.triggerClick()
     }
@@ -59,7 +57,7 @@ export default {
 
           // Redirect to CloseCna page if captive portal didn't close automatically
           setTimeout(() => {
-            this.gotToPage('/close-cna')
+            this.gotToPage('/cna/close-cna')
           }, 2000)
         }, delay)
       }
@@ -68,8 +66,8 @@ export default {
       if (!this.hasInternet) {
         e.preventDefault()
 
-        if (this.platform === 'Android' && isCna()) {
-          this.gotToPage('/fallback')
+        if (window.navigator.userAgent.indexOf('Android') > -1 && isCna()) {
+          this.gotToPage('/cna/fallback')
           return
         }
 
@@ -111,14 +109,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.p-splash {
-  padding: 2rem;
-
-  .v-a-button,
-  .v-a-text  {
-    margin-bottom: 2rem;
-  }
-}
-</style>

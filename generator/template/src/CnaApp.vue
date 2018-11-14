@@ -1,9 +1,6 @@
 <template>
   <div>
+    <h1>CnaApp</h1>
     <router-view></router-view>
   </div>
 </template>
-
-<style lang="scss">
-  @import '@/scss/base.scss';
-</style>

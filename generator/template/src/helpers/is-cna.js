@@ -1,13 +1,15 @@
-import platform from 'platform'
+const UAParser = require('ua-parser-js')
 
 /**
  * Detect if the current enviornment is in captive network assistant
  * @return {Boolean}
  */
-export default () => {
-  let ua = platform.ua.toLowerCase()
+export default (ua = '') => {
+  ua = ua.toLowerCase()
+  const parser = new UAParser(ua)
+  const platform = parser.getResult()
 
-  if (platform.os.family === 'iOS') {
+  if (platform.os.name === 'iOS') {
     if ((ua.indexOf('iphone') !== -1 || ua.indexOf('ipad') !== -1) &&
      (ua.indexOf('mozilla/') !== -1) &&
      (ua.indexOf('applewebkit/') !== -1) &&
@@ -15,7 +17,9 @@ export default () => {
      (ua.indexOf('safari/') === -1)) {
       return true
     }
-  } else if (!window.localStorage) {
+  } else if (window && !window.localStorage) {
     return true
   }
+
+  return false
 }

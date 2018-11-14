@@ -1,5 +1,5 @@
 <template>
-  <div class="p-fallback">
+  <div class="v-t-fallback">
     <VHeading :level="3">Please choose one of the following options to get a link to our app</VHeading>
     <VList>
       <li>SMS</li>
@@ -14,6 +14,7 @@ import VHeading from 'atoms/VHeading'
 import VList from 'atoms/VList'
 
 export default {
+  name: 'VFallbackTemplate',
   components: {
     VHeading,
     VList
@@ -22,7 +23,7 @@ export default {
 </script>
 
 <style lang="scss">
-.p-fallback {
+.v-t-fallback {
   padding: 2rem;
 
   .v-a-heading {
