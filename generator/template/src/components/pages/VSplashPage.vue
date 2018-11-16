@@ -54,11 +54,6 @@ export default {
           }
 
           this.hasBeenTriggered = true
-
-          // Redirect to CloseCna page if captive portal didn't close automatically
-          setTimeout(() => {
-            this.gotToPage('/cna/close-cna')
-          }, 2000)
         }, delay)
       }
     },
@@ -66,7 +61,7 @@ export default {
       if (!this.hasInternet) {
         e.preventDefault()
 
-        if (window.navigator.userAgent.indexOf('Android') > -1 && isCna()) {
+        if (platform.os.family === 'Android' && isCna()) {
           this.gotToPage('/cna/fallback')
           return
         }
@@ -74,7 +69,7 @@ export default {
         let { target } = e
         let id = e.target.getAttribute('id')
 
-        this.loading = true
+        this.isLoading = true
         bootstrapper.authenticate('cloudtrax')
 
         try {
@@ -83,7 +78,7 @@ export default {
 
           this.hasInternet = true
           this.clickeditemid = id
-          this.loading = false
+          this.isLoading = false
 
           // Update current route with new query parameters
           this.$router.push({

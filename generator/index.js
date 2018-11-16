@@ -15,55 +15,20 @@ const addLine = (string, match, line) => {
 module.exports = (api, options, rootOptions) => {
   api.extendPackage({
     dependencies: {
-      'ua-parser-js': '^0.7.19',
+      'platform': '^1.3.5',
       'axios': '^0.18.0'
     }
   })
 
   api.render('./template')
-
   api.postProcessFiles(files => {
     const app = files['src/App.vue']
-
-    if (app) {
-      const content = addLine(app, /^import/, `import bootstrapper from './bootstrapper'
-import isCna from '@/helpers/is-cna'`)
-
-
-      const content2 = addLine(content, /^export default {/, `  data () {
-    return {
-      connectionTested: false
-    }
-  },`)
-
-      const content3 = addLine(content2, /mounted/, '    this.testConnection()')
-      const content4 = addLine(content3, /methods/, `    async testConnection () {
-      let router = this.$router
-
-      try {
-        await bootstrapper.hasInternet()
-        if (isCna()) {
-          router.push('/cna')
-        } else {
-          router.push('/')
-        }
-
-        this.connectionTested = true
-      } catch (e) {
-        router.push('/cna')
-        this.connectionTested = true
-      }
-    },`)
-
-      const content5 = content4.replace(/<template>[^]*?<\/template>/, `<template>
+    const content = app.replace(/<template>[^]*?<\/template>/, `<template>
   <div id="app">
-    <template v-if="connectionTested">
-      <router-view></router-view>
-    </template>
+    <router-view></router-view>
   </div>
 </template>`)
 
-      files['src/App.vue'] = content5
-    }
+    files['src/App.vue'] = content
   })
 }
